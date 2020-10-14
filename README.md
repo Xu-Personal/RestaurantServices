@@ -2,8 +2,7 @@
 
 ## Background
 
-
-The project provides web services available externally for consumptions by public websites such as Yelp, mobile apps such as Apple and Google Maps, as well as the website hosted by the restaurant itself.
+The project provides web services available externally for consumptions by public websites such as Yelp, mobile apps such as Apple and Google Maps, as well as the websites and tablet apps hosted by the restaurants themselves.
 
 Unfamiliar with the softwares (web sites and web services, both exposed and consumed, shared and proprietary), I am making the following assumptions:
 * Apple Map and similar defines a set of common APIs that all restaurants need to support in order to show details when a user looks the restaurant up in Apple Map.
@@ -14,14 +13,14 @@ Unfamiliar with the softwares (web sites and web services, both exposed and cons
   - URLs for pictures of dishes and restaurants
   - tags for types of food (i.e. Mexican, Casual)
   - options (i.e. parking available, take reservation, provide delivery, can take out, has out door seatings, contactless payment)
-* Menu service, consumed by Yelp/etc as well as restaurant's own website
-* Ordering service, mainly consumed by the restaurant's own website
-* Reservation service, mainly consumed by the restaurant's own website
-* Admin services, used by the restaurant adminstrators, to change information such as menu, pictures, operating hours, etc)
+* Menu service, consumed by Yelp/etc as well as restaurants' own websites
+* Ordering service, mainly consumed by the restaurants' own websites
+* Reservation service, mainly consumed by the restaurants' own websites
+* Admin services, used by the restaurant adminstrators, to change information such as menu, pictures, operating hours, etc.
 
 * Services consumed include:
   - credit card payment to all accepted payment options (credit cards, debit cards, etc)
-  - food delivery services: obtain availability (location and time), place order (set up delivery), billing
+  - food delivery services: obtain availability (location and time), place order (set up delivery), 
   
 ## High Level Design Options
 At the very high level, we may have the following choices:
@@ -34,13 +33,14 @@ At the very high level, we may have the following choices:
    of independent restaurants.
 
 As an exercise, 3. is most meaningful, hence that is my choice here.
+Also, as an exercise I am not considering internal business functions such as billing reconcilation, accountings, human resources, supply chains, etc.
 
 ## Pandemic Consideration
 
 The following features are designed to address specifically the challenges for the restaurant business to promote business during the pandemic
 * Provide indicators to search apps whether the restaurants offer take-out, home delivery, outside seating, inside seating, contactless payment
 * Implement a tablet app for waiters/waitresses to take order and payment easily for outside seated customers.
-* Contract a food delivery provider (inefficient to provide deliveries using restaurant staff). A B2B interface is needed for that.
+* Contract a food delivery provider (inefficient to provide deliveries using restaurant staff). A B2B interface with the provider is needed for this purpose.
 
 ## Components (Micro Services)
 The diagram in ServiceDiagram.pdf provides an intuitive views of the components.
@@ -70,7 +70,16 @@ The diagram in ServiceDiagram.pdf provides an intuitive views of the components.
 * Front end (optional): a server hosting a mobile app for consumers
 
 ## Performance Consideration
+The general information micro service will probably carry much more traffic than others. We can utilize caching/etag on the client side (as 
+these contents are relative static) and the auto-scaling group feature of AWS (if we deploy on it) to handle the high volume
+of requests and ensure adequate response time.
 
-
+The services for table reservation, ordering, food delivery, payment, etc., will carry relatively low traffic, auto-scaling group feature can
+still be used when necessary.
 
 ## Mid Level Design
+We can use Spring Boot to implement the services.
+In real implementation, we will use one GitHub project per micro service, with data models and common functions in a project that is dependent by
+the micro services.
+
+__For the purpose of the exercise, I simply create a package for each micro service and the shared code within this project.__
