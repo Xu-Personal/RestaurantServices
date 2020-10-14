@@ -83,3 +83,7 @@ In real implementation, we will use one GitHub project per micro service, with d
 the micro services.
 
 __For the purpose of the exercise, I simply create a package for each micro service and the shared code within this project.__
+
+I choose MongoDB as the database, as this is the one I used most recently (hence quicker to think), but I also believe MongoDB is
+probably a very good solution, if not the best. That is because the schema for a number of things can be quite dynamic, and there is
+not much a need to perform joins.
