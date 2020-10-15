@@ -1,5 +1,6 @@
 package com.restaurant.common.model;
 
+@Document
 public class Reservation {
 
   String restaurantId;
