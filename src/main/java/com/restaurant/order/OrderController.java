@@ -3,12 +3,12 @@ package com.restaurant.order;
 @RestController
 public class OrderController {
 
-@RequestMapping
-public ResponseEntity<Object> getMenus(String restaurantId) {
+@RequestMapping(value="/menu", method=GET)
+public ResponseEntity<Object> getMenus((@PathVariable String restaurantId) {
 }
 
-@RequestMapping
-public ResponseEntity<Object> placeOrder(String restaurantId, Order order) {
+@RequestMapping(value="/order", method=POST)
+public ResponseEntity<Object> placeOrder((@PathVariable String restaurantId, @RequestBody Order order) {
 }
 
 }
