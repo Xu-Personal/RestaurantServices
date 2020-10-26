@@ -1,4 +1,4 @@
-package com.restaurant.generalinfo;
+package com.restaurant.rest.generalinfo;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +22,7 @@ public class GeneralInfoController {
 
     @RequestMapping(value = "/menu/{restaurantId}", method = GET)
     public ResponseEntity<Object> getMenu(@PathVariable String restaurantId) {
-        // Invoke services provided by com.restaurant.order.getMenu and return the result.
+        // Invoke services provided by com.restaurant.rest.order.getMenu and return the result.
         // This permits the external clients with a single endpoint to use
         // Returns an array of MenuItem entries
         return null;

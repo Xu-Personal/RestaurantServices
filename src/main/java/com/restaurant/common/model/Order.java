@@ -1,13 +1,17 @@
 package com.restaurant.common.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Document
 public class Order {
-  String restaurantId;
+  @Id
   String orderId;
+  @Indexed
+  String restaurantId;
   long orderTime;
   Charge chargeInfo;
   OrderStatus status;
@@ -28,5 +32,5 @@ public class Order {
     TakeOut,
     Delivery
   }
-  
+
 }

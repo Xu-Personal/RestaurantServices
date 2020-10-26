@@ -1,4 +1,4 @@
-package com.restaurant.order;
+package com.restaurant.rest.order;
 
 import com.restaurant.common.model.Order;
 import org.springframework.http.ResponseEntity;

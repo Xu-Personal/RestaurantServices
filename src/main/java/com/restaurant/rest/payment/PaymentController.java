@@ -1,4 +1,4 @@
-package com.restaurant.payment;
+package com.restaurant.rest.payment;
 
 import com.restaurant.common.model.Charge;
 import org.springframework.http.ResponseEntity;

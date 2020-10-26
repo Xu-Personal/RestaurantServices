@@ -1,4 +1,4 @@
-package com.restaurant.reservation;
+package com.restaurant.rest.reservation;
 
 import com.restaurant.common.model.Reservation;
 import org.springframework.http.ResponseEntity;

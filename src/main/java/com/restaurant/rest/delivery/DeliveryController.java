@@ -1,4 +1,4 @@
-package com.restaurant.delivery;
+package com.restaurant.rest.delivery;
 
 import com.restaurant.common.model.Delivery;
 import org.springframework.http.ResponseEntity;
